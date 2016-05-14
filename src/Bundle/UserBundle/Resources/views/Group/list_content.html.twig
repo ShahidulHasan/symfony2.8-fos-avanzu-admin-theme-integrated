@@ -1,0 +1,12 @@
+<div class="fos_user_group_list">
+    <a href="{{ path('fos_user_group_new') }}">Add</a>
+    <ul>
+    {% for group in groups %}
+        <li>
+            {{ group.getName() }}
+            <a href="{{ path('fos_user_group_edit', {'id': group.id}) }}">Edit</a>
+            <a href="{{ path('fos_user_group_delete', {'id': group.id}) }}">Delete</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>

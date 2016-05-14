@@ -1,0 +1,57 @@
+{% extends 'AvanzuAdminThemeBundle:layout:login-layout.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block page_content %}
+
+     <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Admin</b>LTE</a>
+
+        </div><!-- /.login-logo -->
+        <div class="login-box-body">
+         {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+            <p class="login-box-msg">Sign in to start your session</p>
+            <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                <div class="form-group has-feedback">
+                    <input class="form-control" placeholder="Username" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                     <input type="password" id="password" class="form-control" placeholder="Password" name="_password" required="required" />
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />{{ 'security.login.remember_me'|trans }}
+                            </label>
+                        </div>
+                    </div><!-- /.col -->
+                    <div class="col-xs-4">
+                     <button type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"
+                        class="btn btn-primary btn-block btn-flat">
+                    Sign In <i class="m-icon-swapright m-icon-white"></i>
+                    </button>
+
+                    </div><!-- /.col -->
+                </div>
+            </form>
+
+            <div class="social-auth-links text-center">
+                <p>- OR -</p>
+                <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using Facebook</a>
+                <a href="#" class="btn btn-block btn-social btn-google-plus btn-flat"><i class="fa fa-google-plus"></i> Sign in using Google+</a>
+            </div><!-- /.social-auth-links -->
+
+            <a href="#">I forgot my password</a><br>
+            <a href="register.html" class="text-center">Register a new membership</a>
+
+        </div><!-- /.login-box-body -->
+    </div>
+
+{% endblock %}

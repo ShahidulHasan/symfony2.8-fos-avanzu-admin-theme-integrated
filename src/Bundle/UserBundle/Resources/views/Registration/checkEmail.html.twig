@@ -1,0 +1,7 @@
+{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block page_content %}
+    <p>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</p>
+{% endblock %}

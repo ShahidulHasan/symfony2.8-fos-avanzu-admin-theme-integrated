@@ -1,0 +1,24 @@
+parameters:
+    userbundle_user.user.permission.security_provider.class: Bundle\UserBundle\Permission\Provider\SecurityPermissionProvider
+    userbundle_user.user.permission_builder.class: Bundle\UserBundle\Permission\PermissionBuilder
+
+services:
+    userbundle_user.user.permission.security_provider:
+        class: %userbundle_user.user.permission.security_provider.class%
+        tags:
+            - { name: userbundle_user.user.permission_provider, alias: user }
+
+    userbundle_user.user.permission_builder:
+        class: %userbundle_user.user.permission_builder.class%
+
+    userbundle_user.registration.form.type:
+        class: Bundle\UserBundle\Form\Type\UserFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: user }
+
+    userbundle_user.group.form.type:
+        class: Bundle\UserBundle\Form\Type\GroupFormType
+        arguments: [%fos_user.model.group.class%, @userbundle_user.user.permission_builder]
+        tags:
+            - { name: form.type, alias: fos_user_group }

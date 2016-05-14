@@ -1,0 +1,11 @@
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: symfony_2_8_fos_avanzu
+    database_user: root
+    database_password: 1
+    mailer_transport: smtp
+    mailer_host: 127.0.0.1
+    mailer_user: null
+    mailer_password: null
+    secret: c4b6ece85582ddc147962074a8f0cf453ad8e747

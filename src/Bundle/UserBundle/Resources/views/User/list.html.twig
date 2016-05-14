@@ -1,0 +1,39 @@
+{% extends 'AvanzuAdminThemeBundle:layout:base-layout.html.twig' %}
+
+{% block page_content %}
+    <a href="{{ path('user_add') }}">Add</a>
+<table>
+    <thead>
+        <tr>
+            <th>SL</th>
+            <th>Username</th>
+            <th>Full Name</th>
+            <th>Cellphone</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user in users %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.profile.fullName | default() }}</td>
+            <td>{{ user.profile.cellphone | default() }}</td>
+            <td>{{ user.status() }}</td>
+            <td>
+                {% if is_granted("ROLE_SUPER_ADMIN") and not user.isSuperAdmin() %}
+                    <a href="{{ path('user_delete', {'id': user.id}) }}">Delete</a>
+                {% endif %}
+                {% if is_granted("ROLE_SUPER_ADMIN") and not user.isSuperAdmin() %}
+                    <a href="{{ path('user_enabled', {'id': user.id}) }}">{{ user.statusChangeText() }}</a>
+                 {% endif %}
+                {% if is_granted("ROLE_SUPER_ADMIN") %}
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Edit</a>
+                 {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
